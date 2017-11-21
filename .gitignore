@@ -290,3 +290,32 @@ __pycache__/
 # TPM simulator run-time/state files
 NVChip
 RsaKeyCacheCrt.data
+
+# Linux build files
+.deps/
+.dirstamp
+.libs/
+*.la
+*.lo
+*.log
+*.o
+*.pp
+*.swp
+*.trs
+Makefile
+Makefile.in
+aclocal.m4
+autom4te.cache/
+compile
+config.guess
+config.log
+config.status
+config.sub
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+missing
+TPMCmd/Platform/src/libplatform.a
+VERSION
