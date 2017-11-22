@@ -38,4 +38,6 @@ AM_INIT_AUTOMAKE([foreign subdir-objects])
 AC_CONFIG_FILES([Makefile])
 AC_SUBST([DISTCHECK_CONFIGURE_FLAGS],[$ac_configure_args])
 
+PKG_CHECK_MODULES([LIBCRYPTO], [libcrypto < 1.1 ])
+
 AC_OUTPUT

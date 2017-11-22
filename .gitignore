@@ -317,5 +317,6 @@ install-sh
 libtool
 ltmain.sh
 missing
+TPMCmd/tpm/src/libtpm.a
 TPMCmd/Platform/src/libplatform.a
 VERSION
