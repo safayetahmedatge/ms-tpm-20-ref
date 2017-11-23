@@ -319,4 +319,5 @@ ltmain.sh
 missing
 TPMCmd/tpm/src/libtpm.a
 TPMCmd/Platform/src/libplatform.a
+TPMCmd/Simulator/src/tpm2-simulator
 VERSION
