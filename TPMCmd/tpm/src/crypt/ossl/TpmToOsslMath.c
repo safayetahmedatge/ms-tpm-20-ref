@@ -86,7 +86,7 @@ OsslToTpmBn(
 {
     if(bn != NULL)
     {
-        if(osslBn->d != bn->d)
+        if(osslBn->d != (BN_ULONG*)bn->d)
         {
             int         i;
             pAssert((unsigned)osslBn->top <= BnGetAllocated(bn));
@@ -106,7 +106,7 @@ BigInitialized(
 {
     if(toInit == NULL || initializer == NULL)
         return NULL;
-    toInit->d = (crypt_uword_t *)&initializer->d[0];
+    toInit->d = (BN_ULONG*)&initializer->d[0];
     toInit->dmax = initializer->allocated;
     toInit->top = initializer->size;
     toInit->neg = 0;
