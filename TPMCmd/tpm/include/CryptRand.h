@@ -98,7 +98,7 @@ typedef union
 typedef union
 {
     BYTE        bytes[DRBG_IV_SIZE_BYTES];
-    crypt_uword_t   words[1];
+    crypt_uword_t   words[DRBG_IV_SIZE_WORDS];
 } DRBG_IV;
 
 typedef union
