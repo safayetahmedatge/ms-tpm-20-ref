@@ -394,7 +394,7 @@ TPMPropertyIsDefined(
 
             // Note: Different compilers may require a different method to cast
             // a bit field structure to a UINT32.
-            *value = *(UINT32 *)&flags;
+            memcpy (value, &flags, sizeof (*value));
             break;
         }
         case TPM_PT_STARTUP_CLEAR:
@@ -414,7 +414,7 @@ TPMPropertyIsDefined(
 
             // Note: Different compilers may require a different method to cast
             // a bit field structure to a UINT32.
-            *value = *(UINT32 *)&flags;
+            memcpy (value, &flags, sizeof (*value));
             break;
         }
         case TPM_PT_HR_NV_INDEX:
