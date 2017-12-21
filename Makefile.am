@@ -37,7 +37,8 @@ tpm2_simulator = TPMCmd/Simulator/src/tpm2-simulator
 bin_PROGRAMS = $(tpm2_simulator)
 noinst_LIBRARIES = $(libplatform) $(libtpm)
 
-TPMCmd_Platform_src_libplatform_a_CFLAGS = $(PLATFORM_INC) $(TPM_INC)
+TPMCmd_Platform_src_libplatform_a_CFLAGS = $(EXTRA_CFLAGS) $(PLATFORM_INC) \
+    $(TPM_INC)
 TPMCmd_Platform_src_libplatform_a_SOURCES = " \
     TPMCmd/Platform/include/PlatformData.h \
     TPMCmd/Platform/include/prototypes/Platform_fp.h \
@@ -54,8 +55,8 @@ TPMCmd_Platform_src_libplatform_a_SOURCES = " \
     TPMCmd/Platform/src/Unique.c \
 "
 
-TPMCmd_Simulator_src_tpm2_simulator_CFLAGS = $(PLATFORM_INC) $(TPM_INC) \
-    $(SIMULATOR_INC) $(LIBCRYPTO_CFLAGS) $(PTHREAD_CFLAGS)
+TPMCmd_Simulator_src_tpm2_simulator_CFLAGS = $(EXTRA_CFLAGS) $(PLATFORM_INC) \
+    $(TPM_INC) $(SIMULATOR_INC) $(LIBCRYPTO_CFLAGS) $(PTHREAD_CFLAGS)
 # the weird / duplicate static library is necessary for dealing with the
 # circular dependency beetween libplatform and libtpm
 TPMCmd_Simulator_src_tpm2_simulator_LDADD = $(libplatform) $(libtpm) \
@@ -67,7 +68,8 @@ TPMCmd_Simulator_src_tpm2_simulator_SOURCES = " \
     TPMCmd/Simulator/src/TPMCmds.c \
 "
 
-TPMCmd_tpm_src_libtpm_a_CFLAGS = $(PLATFORM_INC) $(TPM_INC) $(LIBCRYPTO_CFLAGS)
+TPMCmd_tpm_src_libtpm_a_CFLAGS = $(EXTRA_CFLAGS) $(PLATFORM_INC) $(TPM_INC) \
+    $(LIBCRYPTO_CFLAGS)
 TPMCmd_tpm_src_libtpm_a_SOURCES = " \
     TPMCmd/tpm/include/BaseTypes.h \
     TPMCmd/tpm/include/BnValues.h \

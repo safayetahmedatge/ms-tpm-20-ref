@@ -41,4 +41,7 @@ AC_SUBST([DISTCHECK_CONFIGURE_FLAGS],[$ac_configure_args])
 PKG_CHECK_MODULES([LIBCRYPTO], [libcrypto < 1.1 ])
 AX_PTHREAD([], [AC_MSG_ERROR([requires pthread])])
 
+AX_ADD_COMPILER_FLAG([-Werror])
+AX_ADD_COMPILER_FLAG([-Wall])
+
 AC_OUTPUT
