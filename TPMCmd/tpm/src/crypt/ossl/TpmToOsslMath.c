@@ -69,7 +69,7 @@ OsslToTpmBn(
 {
     if(bn != NULL)
     {
-        if((crypt_uword_t *)osslBn->d != bn->d)
+        if((crypt_uword_t *)osslBn->d != (BN_ULONG *)bn->d)
         {
             int         i;
             pAssert((unsigned)osslBn->top <= BnGetAllocated(bn));
