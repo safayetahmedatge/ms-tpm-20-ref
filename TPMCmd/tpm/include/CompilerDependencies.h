@@ -123,8 +123,23 @@ __pragma(warning(pop))
 #   define  NOT_REFERENCED(x) (x = x)
 #endif
 
-#ifdef _POSIX_
+#ifdef __unix__
+/* random windows stuff */
+#   include <string.h>
+#   define ZeroMemory(ptr, sz) (memset((ptr), 0, (sz)))
+#   define WINAPI
+#   define HANDLE int
+#   include <stdint.h>
+#   define INT_PTR int64_t
+/* winsock -> POSIX */
 typedef int SOCKET;
+#   define INVALID_SOCKET (-1)
+#   define SOCKET_ERROR   (-1)
+#   include <unistd.h>
+#   define closesocket(x) close(x)
+/* win errors -> errno */
+#   include <errno.h>
+#   define WSAGetLastError() (errno)
 #endif
 
 
