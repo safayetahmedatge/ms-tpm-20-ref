@@ -44,6 +44,7 @@
 #ifdef _MSC_VER
 #include <windows.h>
 #include <winsock.h>
+typedef int socklen_t;
 #elif defined(__unix__)
 #  include <string.h>
 #  define ZeroMemory(ptr, sz) (memset((ptr), 0, (sz)))
@@ -56,6 +57,8 @@ typedef int SOCKET;
 #  define WSAGetLastError() (errno)
 #  include <stdint.h>
 #  define INT_PTR intptr_t
+#  include <netinet/in.h>
+#  include <sys/socket.h>
 #endif
 
 
@@ -257,7 +260,7 @@ PlatformSvcRoutine(
     SOCKET               listenSocket, serverSocket;
     struct               sockaddr_in HerAddress;
     int                  res;
-    int                  length;
+    socklen_t            length;
     BOOL                 continueServing;
 
     res = CreateSocket(PortNumber, &listenSocket);
@@ -354,7 +357,8 @@ RegularCommandService(
     SOCKET               serverSocket;
     struct               sockaddr_in HerAddress;
 
-    int res, length;
+    int res;
+    socklen_t length;
     BOOL continueServing;
 
     res = CreateSocket(PortNumber, &listenSocket);
