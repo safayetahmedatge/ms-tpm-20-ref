@@ -143,6 +143,7 @@ __pragma(warning(pop))
 #   define HANDLE int
 #   include <stdint.h>
 #   define INT_PTR int64_t
+typedef uintptr_t UINT_PTR;
 /* winsock -> POSIX */
 typedef int SOCKET;
 #   define INVALID_SOCKET (-1)

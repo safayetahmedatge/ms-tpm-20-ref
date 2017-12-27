@@ -45,6 +45,11 @@
 // properties, and command code values.
 #include "TpmTypes.h"
 
+#ifdef _MSC_VER
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+
 //** Typedefs
 // These defines are used primarily for sizing of the local response buffer.
 typedef struct 
@@ -184,10 +189,10 @@ TpmFail(
     // On a 64-bit machine, this may truncate the address of the string
     // of the function name where the error occurred.
 #if FAIL_TRACE
-    s_failFunction = (UINT32)function;
+    s_failFunction = (UINT_PTR)function;
     s_failLine = line;
 #else
-    s_failFunction = (UINT32)NULL;
+    s_failFunction = (UINT_PTR)NULL;
     s_failLine = 0;
 #endif
     s_failCode = code;
