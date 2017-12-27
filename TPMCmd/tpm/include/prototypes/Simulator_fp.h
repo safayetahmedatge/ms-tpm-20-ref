@@ -42,7 +42,8 @@
 
 //** From TcpServer.c 
 
-
+#include "BaseTypes.h"
+#include "CompilerDependencies.h"
 
 //*** PlatformServer()
 // This function processes incoming platform requests.
