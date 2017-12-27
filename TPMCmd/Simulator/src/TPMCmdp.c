@@ -46,8 +46,10 @@
 #include <setjmp.h>
 #include "TpmBuildSwitches.h"
 
+#ifdef _MSC_VER
 #include <windows.h>
 #include <winsock.h>
+#endif
 
 #include "Platform_fp.h"
 #include "ExecCommand_fp.h"
@@ -325,6 +327,7 @@ _rpc__Shutdown(
     void
     )
 {
+#ifdef _MSC_VER
     RPC_STATUS status;
 
     // Stop TPM
@@ -343,5 +346,6 @@ _rpc__Shutdown(
         printf("RpcServerUnregisterIf returned 0x%x\n", status);
         exit(status);
     }
+#endif
     return;
 }
