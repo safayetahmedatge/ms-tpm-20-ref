@@ -46,7 +46,7 @@
 #include <windows.h>
 #include <winsock.h>
 #else
-typedef SOCKET  int
+#include <netinet/in.h>
 #endif
 
 
@@ -54,7 +54,7 @@ typedef SOCKET  int
 #include <stdlib.h>
 #include <stdint.h>
 
-//#include "BaseTypes.h"
+#include "BaseTypes.h"
 
 #include "TpmTcpProtocol.h"
 #include "Manufacture_fp.h"
@@ -92,18 +92,20 @@ CreateSocket(
     SOCKET              *listenSocket
     )
 {
-    WSADATA              wsaData;
     struct               sockaddr_in MyAddress;
 
     int res;
   
     // Initialize Winsock
+#ifdef _MSC_VER
+    WSADATA              wsaData;
     res = WSAStartup(MAKEWORD(2, 2), &wsaData);
     if(res != 0)
     {
         printf("WSAStartup failed with error: %d\n", res);
         return -1;
     }
+#endif
 
     // create listening socket
     *listenSocket = socket(PF_INET, SOCK_STREAM, 0);
@@ -288,6 +290,7 @@ PlatformSvcRoutine(
 // This function starts a new thread waiting for platform signals.
 // Platform signals are processed one at a time in the order in which they are
 // received.
+#if defined(_MSC_VER)
 int
 PlatformSignalService(
     int              PortNumber
@@ -309,7 +312,28 @@ PlatformSignalService(
 
     return 0;
 }
+#elif defined(__unix__)
+#include <pthread.h>
+int
+PlatformSignalService(
+    int              PortNumber
+    )
+{
+    pthread_t thread_id;
+    int ret;
+    int port = PortNumber;
 
+    ret = pthread_create(&thread_id, NULL, (void*)PlatformSvcRoutine, (LPVOID)(INT_PTR)port);
+    if (ret == -1)
+    {
+        printf("pthread_create failed: %s", strerror(ret));
+    }
+
+    return ret;
+}
+#elif
+#error "Unsupported platform."
+#endif // _MSC_VER
 //*** RegularCommandService()
 // This function services regular commands.
 int
