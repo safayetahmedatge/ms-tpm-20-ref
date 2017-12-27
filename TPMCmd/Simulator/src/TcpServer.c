@@ -44,7 +44,10 @@
 #ifdef _MSC_VER
 #include <windows.h>
 #include <winsock.h>
+typedef int socklen_t;
 #else
+#include <netinet/in.h>
+#include <sys/socket.h>
 typedef int SOCKET;
 #endif
 
@@ -247,7 +250,7 @@ PlatformSvcRoutine(
     SOCKET               listenSocket, serverSocket;
     struct               sockaddr_in HerAddress;
     int                  res;
-    int                  length;
+    socklen_t            length;
     BOOL                 continueServing;
 
     res = CreateSocket(PortNumber, &listenSocket);
@@ -344,7 +347,8 @@ RegularCommandService(
     SOCKET               serverSocket;
     struct               sockaddr_in HerAddress;
 
-    int res, length;
+    int res;
+    socklen_t length;
     BOOL continueServing;
 
     res = CreateSocket(PortNumber, &listenSocket);
