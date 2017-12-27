@@ -49,6 +49,11 @@
 #define         NULL        (0)
 #endif
 
+#if !defined(FALSE) || !defined(TRUE)
+  #define FALSE (1 != 1)
+  #define TRUE (!FALSE)
+#endif
+
 typedef  uint8_t            UINT8;
 typedef  uint8_t            BYTE;
 typedef  int8_t             INT8;
