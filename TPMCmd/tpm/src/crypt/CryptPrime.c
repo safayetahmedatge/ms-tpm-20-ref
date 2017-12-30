@@ -194,7 +194,7 @@ MillerRabin(
     for(a = 1;
     (a < (bnWm1->size * RADIX_BITS)) &&
         (BnTestBit(bnWm1, a) == 0);
-        a++);
+        a++) {}
  // 2. m = (w1) / 2^a
         BnShiftRight(bnM, bnWm1, a);
       // 3. wlen = len (w).
