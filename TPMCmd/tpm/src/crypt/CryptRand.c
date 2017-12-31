@@ -559,7 +559,7 @@ CryptRandomStir(
 {
 #if !USE_DEBUG_RNG 
     DRBG_SEED        tmpBuf;
-    DRBG_SEED        dfResult;
+    DRBG_SEED        dfResult = { .bytes = { 0 } };
 //
     // All reseed with outside data starts with a buffer full of entropy
     if(!DRBG_GetEntropy(sizeof(tmpBuf), (BYTE *)&tmpBuf))
