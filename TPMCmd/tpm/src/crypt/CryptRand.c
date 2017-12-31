@@ -564,7 +564,7 @@ CryptRandomStir(
     )
 {
     DRBG_SEED        tmpBuf;
-    DRBG_SEED        dfResult;
+    DRBG_SEED        dfResult = { .bytes = { 0 } };
 //
 #if defined USE_DEBUG_RNG && 1
     // If doing debug, use the input data as the initial setting for the RNG state
