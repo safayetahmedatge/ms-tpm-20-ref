@@ -43,5 +43,6 @@ AX_PTHREAD([], [AC_MSG_ERROR([requires pthread])])
 
 AX_ADD_COMPILER_FLAG([-Werror])
 AX_ADD_COMPILER_FLAG([-Wall])
+AX_ADD_COMPILER_FLAG([-Wno-error=unused-result])
 
 AC_OUTPUT
