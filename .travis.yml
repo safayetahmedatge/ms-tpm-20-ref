@@ -1,0 +1,16 @@
+language: c
+compiler:
+  - gcc
+
+sudo: false
+dist: trusty
+
+addons:
+  apt:
+    packages:
+    - autoconf-archive
+
+script:
+  - ./bootstrap
+  - ./configure
+  - make --jobs=$(($(nproc)*2))

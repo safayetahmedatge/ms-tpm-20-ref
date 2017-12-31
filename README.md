@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/flihp/ms-tpm-20-ref.svg?branch=v1.38-build-vs2017-linux)](https://travis-ci.org/flihp/ms-tpm-20-ref/builds)
+
 This is a Microsoft Visual Studio solution that contains reference implementation of the TPM 2.0 Specification by TCG (https://trustedcomputinggroup.org/tpm-library-specification/).
 
 See TPMCmd/tpm/include/TpmTypes.h for the exact revision/date of the TPM 2.0 specification issue, which the given source tree snapshot corresponds to.
