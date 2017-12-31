@@ -28,3 +28,10 @@
 
 git describe --tags --always --dirty > VERSION
 autoreconf --install --sym
+
+# A freshly checked out source tree will not build. VendorString.h must have
+# these symbols defined to build.
+sed -i 's&^\/\/\(#define[[:space:]]\+FIRMWARE_V1.*\)&\1&;
+        s&^\/\/\(#define[[:space:]]\+MANUFACTURER.*\)&\1&;
+        s&^\/\/\(#define[[:space:]]\+VENDOR_STRING_1.*\)&\1&' \
+       TPMCmd/tpm/include/VendorString.h
