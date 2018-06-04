@@ -1,0 +1,5 @@
+version: '{build}'
+image: Visual Studio 2017
+build:
+  parallel: true
+  verbosity: minimal
