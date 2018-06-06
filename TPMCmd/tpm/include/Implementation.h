@@ -44,6 +44,10 @@
 #include    "TpmBuildSwitches.h"
 #include    "BaseTypes.h"
 #include    "TPMB.h"
+#if defined(_MSC_VER) && !defined(__STDC_WANT_SECURE_LIB__)
+#define __STDC_WANT_SECURE_LIB__ 0
+#endif
+#include <openssl/bn.h>
 
 #undef TRUE
 #undef FALSE
@@ -152,7 +156,11 @@
 
 // Table 0:7 - Defines for Implementation Values
 #define FIELD_UPGRADE_IMPLEMENTED       NO
+#if (defined SIXTY_FOUR_BIT || defined SIXTY_FOUR_BIT_LONG)
+#define RADIX_BITS                      64
+#else
 #define RADIX_BITS                      32
+#endif
 #define HASH_ALIGNMENT                  4
 #define SYMMETRIC_ALIGNMENT             4
 #ifdef USE_WOLFCRYPT
