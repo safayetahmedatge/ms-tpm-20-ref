@@ -42,9 +42,6 @@
 
 //** From TcpServer.c 
 
-#include "BaseTypes.h"
-#include "CompilerDependencies.h"
-
 #ifdef __unix__
 typedef int SOCKET;
 #endif
