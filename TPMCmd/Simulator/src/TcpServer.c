@@ -47,6 +47,10 @@
 #elif defined(__unix__)
 #  include <string.h>
 #  define ZeroMemory(ptr, sz) (memset((ptr), 0, (sz)))
+#  include <unistd.h>
+#  define closesocket(x) close(x)
+#  define INVALID_SOCKET (-1)
+#  define SOCKET_ERROR   (-1)
 typedef int SOCKET;
 #endif
 
