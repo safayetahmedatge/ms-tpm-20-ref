@@ -54,6 +54,8 @@
 typedef int SOCKET;
 #  include <errno.h>
 #  define WSAGetLastError() (errno)
+#  include <stdint.h>
+#  define INT_PTR intptr_t
 #endif
 
 
