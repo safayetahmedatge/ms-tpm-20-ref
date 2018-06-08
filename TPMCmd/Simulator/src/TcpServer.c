@@ -52,6 +52,8 @@
 #  define INVALID_SOCKET (-1)
 #  define SOCKET_ERROR   (-1)
 typedef int SOCKET;
+#  include <errno.h>
+#  define WSAGetLastError() (errno)
 #endif
 
 
