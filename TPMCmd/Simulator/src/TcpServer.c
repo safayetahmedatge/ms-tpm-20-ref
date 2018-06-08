@@ -44,7 +44,9 @@
 #ifdef _MSC_VER
 #include <windows.h>
 #include <winsock.h>
-#else
+#elif defined(__unix__)
+#  include <string.h>
+#  define ZeroMemory(ptr, sz) (memset((ptr), 0, (sz)))
 typedef int SOCKET;
 #endif
 
