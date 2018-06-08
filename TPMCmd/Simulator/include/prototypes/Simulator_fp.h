@@ -45,6 +45,10 @@
 #include "BaseTypes.h"
 #include "CompilerDependencies.h"
 
+#ifdef __unix__
+typedef int SOCKET;
+#endif
+
 //*** PlatformServer()
 // This function processes incoming platform requests.
 BOOL
